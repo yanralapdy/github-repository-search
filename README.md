@@ -1,73 +1,105 @@
-# React + TypeScript + Vite
+# GitHub Repository Search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React + TypeScript application to search GitHub users and explore their public repositories.  
+Built with [Vite](https://vitejs.dev/), [TailwindCSS](https://tailwindcss.com/), and tested with [Vitest](https://vitest.dev/).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## &#128640; Features
+- &#128269; Search GitHub users
+- &#128194; View public repositories
+- &#11088; See repository stars
+- &#127912; Styled with Tailwind + gradient headings
+- &#129514; Unit & integration tested with Vitest + React Testing Library
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## &#9889; Getting Started
 
-## Expanding the ESLint configuration
+You can run this project in **two ways**:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1 Run with **Docker** (no Node.js required)
+This option is perfect if you don’t want to install Node.js locally.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+#### Requirements
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows/Mac) or Docker Engine (Linux)
+- [Docker Compose](https://docs.docker.com/compose/)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+#### Setup
+Clone the repo and `cd` into the project:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/your-username/github-repository-search.git
+cd github-repository-search
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Install dependencies inside Docker:
+```bash
+docker compose run --rm node npm install
 ```
+Start the dev server (exposes `localhost:3000`):
+```bash
+docker compose run --rm --service-ports node npm run dev
+```
+Run tests:
+```bash
+docker compose run --rm node npm test
+```
+Build production bundle:
+```
+docker compose run --rm node npm run build
+```
+##
+### 2 Run with local Node.js
+If you already have Node installed, you can run the app directly.
+
+#### Requirements
+- [Node.js 22+](https://nodejs.org/en)
+- [npm](https://docs.npmjs.com/) (comes with Node)
+
+#### Setup
+Clone the repo and `cd` into the project:
+```bash
+git clone https://github.com/your-username/github-repository-search.git
+cd github-repository-search
+```
+Install dependencies:
+```bash
+npm install
+```
+Start the dev server:
+```bash
+npm run dev
+```
+Run tests:
+```bash
+npm test
+```
+Build production bundle:
+```bash
+npm run build
+```
+##
+
+## &#9881; Environment Variables
+The app uses GitHubs API. Create a `.env` file in the project root:
+```env
+VITE_API_URL=https://api.github.com
+```
+##
+
+## &#128220; Scripts Overview
+Script | Description
+`npm run dev` | Start Vite development server
+`npm run build` | Build production-ready files
+`npm run preview` | Preview build app locally
+`npm test` | Run Vitest test suite
+##
+
+&#10137; Tech Stack
+- &#9883; React + TypeScript
+- &#9889; Vite
+- &#127912; TailwindCSS
+- &#129514; Vitest + React Testing Library
+- &#128051; Docker (for isolated dev environment)
+
+&#10024; Choose between **Dockerized dev workflow** or **native Node workflow** -- both fully documented!
